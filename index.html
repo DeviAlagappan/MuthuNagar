@@ -35,6 +35,13 @@
     display: none;
     z-index: 9;
   }
+
+  /* HIDE highlight on mobile screens */
+  @media (max-width: 768px) {
+    #highlight {
+      display: none !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -98,9 +105,11 @@
   let lastArea = null;
 
   function showHighlight(area) {
+    if(window.innerWidth <= 768) return; // skip on mobile
+
     const coords = area.coords.split(',').map(Number);
     const shape = area.shape.toLowerCase();
-    if (shape === 'rect') {
+    if(shape === 'rect') {
       const [x1, y1, x2, y2] = coords;
       const left = Math.min(x1, x2) * img.width / img.naturalWidth;
       const top = Math.min(y1, y2) * img.height / img.naturalHeight;
