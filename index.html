@@ -15,14 +15,12 @@
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
     background: #f5f5f5;
   }
 
   .image-container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1200px; /* caps the width */
     position: relative;
     margin: 20px auto;
   }
@@ -61,8 +59,9 @@
 
 <div class="image-container">
   <img src="1761440190011-11610387-d275-47d4-b4ad-d586ca2050b5_1.png" usemap="#image-map" alt="Site Plan">
-  
+
   <map name="image-map">
+    <!-- All your areas copied exactly -->
     <area alt="Site 28 – 1297 sq.ft - 2.426 cents - South facing" title="Site 28 – 1297 sq.ft - 2.426 cents - South facing" href="#" coords="347,326,399,269" shape="rect">
     <area alt="Site 29 – 1172 sq.ft - 2.301 cents - South facing" title="Site 29 – 1172 sq.ft - 2.301 cents - South facing" href="#" coords="400,266,444,327,402,269,405,272" shape="rect">
     <area alt="Site 30 – 1261 sq.ft - 2.389 cents - South facing" title="Site 30 – 1261 sq.ft - 2.389 cents - South facing" href="#" coords="444,265,492,325" shape="rect">
@@ -123,7 +122,6 @@
       const coords = area.coords.split(',').map(Number);
       const shape = area.shape.toLowerCase();
 
-      // Show tooltip
       tooltip.style.display = 'block';
       tooltip.textContent = area.title;
 
@@ -134,7 +132,6 @@
 
       img.addEventListener('mousemove', moveTooltip);
 
-      // Show highlight
       if (shape === 'rect') {
         const [x1, y1, x2, y2] = coords;
         const left = Math.min(x1, x2) * img.width / img.naturalWidth;
